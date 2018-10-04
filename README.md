@@ -31,10 +31,10 @@ const logger = new gunsen.Logger(
   }),
 );
 
-// Create a sub-logger with the given metadata
+// Creates a sub-logger with the given metadata
 const sub = logger.child({ username: "Seldszar" });
 
-// Outputs: "error: Lorem ipsum dolor sit amet."
+// Outputs: "error: I don't have metadata."
 logger.error("I don't have metadata.");
 
 // Outputs: "info: Hello from this user! {"username":"Seldszar"}"
