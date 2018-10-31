@@ -53,7 +53,7 @@
     "winston": "^3.1.0"
   },
   "peerDependencies": {
-    "winston": "^3.0.0"
+    "winston": ">=2.0.0"
   },
   "commitlint": {
     "extends": [
