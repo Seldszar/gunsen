@@ -17,7 +17,7 @@ branches:
   except:
     - /^v\d+\.\d+\.\d+$/
 
-install:
+before_install:
   - npm install -g codecov
 
 script:
