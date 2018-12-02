@@ -4,6 +4,9 @@
 
 -   [Logger][1]
     -   [Parameters][2]
+    -   [metadata][3]
+    -   [child][4]
+        -   [Parameters][5]
 
 ## Logger
 
@@ -12,12 +15,32 @@ Wraps a logger which appends metadata when logging a message.
 ### Parameters
 
 -   `logger` **any** the logger
--   `metadata` **[Object][3]** metadata to append when logging a message (optional, default `{}`)
+-   `metadata` **[Object][6]** metadata to append when logging a message (optional, default `{}`)
 
-Returns **any** the wrapped logger.
+### metadata
+
+The current metadata.
+
+Type: [Object][6]
+
+### child
+
+Creates a sub-logger.
+
+#### Parameters
+
+-   `meta` **[Object][6]** the metadata to merge
+
+Returns **any** the sub-logger.
 
 [1]: #logger
 
 [2]: #parameters
 
-[3]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object
+[3]: #metadata
+
+[4]: #child
+
+[5]: #parameters-1
+
+[6]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object
