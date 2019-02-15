@@ -10,7 +10,7 @@
 
 ## Logger
 
-Wraps a logger which appends metadata when logging a message.
+A wrapper which appends metadata when logging a message.
 
 ### Parameters
 
