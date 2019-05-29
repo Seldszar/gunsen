@@ -8,7 +8,6 @@ Wrapper for Winston appending metadata to messages.
 
 - [Installation](#installation)
 - [Usage](#usage)
-- [API](#api)
 - [Author](#author)
 - [License](#license)
 
@@ -43,10 +42,6 @@ sub.info("Hello from this user!");
 // Outputs: "warn: I can also do that! {"date":1529682533839,"username":"Seldszar"}"
 sub.log({ level: "warn", message: "I can also do that!", date: Date.now() });
 ```
-
-# API
-
-See the detailed [API Reference](API.md).
 
 ## Author
 
