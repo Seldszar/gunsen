@@ -33,7 +33,7 @@
     "doc": "typedoc --out docs src",
     "build": "tsc",
     "lint": "eslint --format codeframe src/**/*",
-    "release": "semantic-release",
+    "release": "yarn run build && semantic-release",
     "test": "jest"
   },
   "dependencies": {
