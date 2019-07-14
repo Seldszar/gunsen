@@ -38,38 +38,32 @@ describe("Logger()", (): void => {
   });
 
   test("should add metadata", (): void => {
-    const logger = createLogger(
-      (data: winston.LogEntry): void => {
-        expect(data.level).toBe("info");
-        expect(data.message).toBe("Hello!");
-        expect(data.username).toBe("Seldszar");
-      },
-    );
+    const logger = createLogger((data: winston.LogEntry): void => {
+      expect(data.level).toBe("info");
+      expect(data.message).toBe("Hello!");
+      expect(data.username).toBe("Seldszar");
+    });
 
     logger.child({ username: "Seldszar" }).info("Hello!");
   });
 
   test("should merge metadata", (): void => {
-    const logger = createLogger(
-      (data: winston.LogEntry): void => {
-        expect(data.level).toBe("info");
-        expect(data.message).toBe("Hello!");
-        expect(data.username).toBe("Seldszar");
-        expect(data.success).toBe(true);
-      },
-    );
+    const logger = createLogger((data: winston.LogEntry): void => {
+      expect(data.level).toBe("info");
+      expect(data.message).toBe("Hello!");
+      expect(data.username).toBe("Seldszar");
+      expect(data.success).toBe(true);
+    });
 
     logger.child({ username: "Seldszar" }).info("Hello!", { success: true });
   });
 
   test("should replace metadata with same keys", (): void => {
-    const logger = createLogger(
-      (data: winston.LogEntry): void => {
-        expect(data.level).toBe("info");
-        expect(data.message).toBe("Hello!");
-        expect(data.username).toBe("Oof");
-      },
-    );
+    const logger = createLogger((data: winston.LogEntry): void => {
+      expect(data.level).toBe("info");
+      expect(data.message).toBe("Hello!");
+      expect(data.username).toBe("Oof");
+    });
 
     logger.child({ username: "Seldszar" }).info("Hello!", { username: "Oof" });
   });

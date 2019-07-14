@@ -1,19 +1,19 @@
 import isPlainObject from "lodash.isplainobject";
-import * as winston from "winston";
+import winston from "winston";
 
 /**
- * The logger metadata.
+ * A logger metadata.
  */
 export type LoggerMetadata = Record<string, any>;
 
 /**
- * The logger.
+ * A logger.
  */
 export type Logger = winston.Logger & {
   /**
-   * Metadata associated with the actual logger.
+   * Metadata associated with the logger.
    */
-  metadata: LoggerMetadata;
+  readonly metadata: LoggerMetadata;
 
   /**
    * Creates a new logger and inherits new metadata.
@@ -23,15 +23,30 @@ export type Logger = winston.Logger & {
 };
 
 /**
+ * A logger constructor.
+ */
+export interface LoggerConstructor {
+  /**
+   * Creates a new wrapper which appends metadata when logging a message.
+   * @param logger the logger
+   * @param metadata metadata to append when logging a message
+   */
+  (logger?: winston.Logger | winston.LoggerOptions, metadata?: LoggerMetadata): Logger;
+
+  /**
+   * Creates a new wrapper which appends metadata when logging a message.
+   * @param logger the logger
+   * @param metadata metadata to append when logging a message
+   */
+  new (logger?: winston.Logger | winston.LoggerOptions, metadata?: LoggerMetadata): Logger;
+}
+
+/**
  * Creates a new wrapper which appends metadata when logging a message.
  * @param logger the logger
  * @param metadata metadata to append when logging a message
  */
-export function Logger(
-  logger?: winston.Logger | winston.LoggerOptions,
-  metadata?: LoggerMetadata,
-): void;
-export function Logger(
+export function createLogger(
   logger?: winston.Logger | winston.LoggerOptions,
   metadata?: LoggerMetadata,
 ): Logger {
@@ -44,21 +59,14 @@ export function Logger(
   }
 
   const proxy = new Proxy(logger, {
-    get(target: winston.Logger, property: string): any {
+    get(target, property): any {
       if (property === "metadata") {
-        /**
-         * The current metadata.
-         */
         return metadata;
       }
 
       if (property === "child") {
-        /**
-         * Creates a sub-logger.
-         * @param meta the metadata to merge
-         */
-        return function child(meta: LoggerMetadata): Logger {
-          return new Logger(logger, { ...metadata, ...meta });
+        return function child(meta: any): Logger {
+          return createLogger(logger, { ...metadata, ...meta });
         };
       }
 
@@ -82,3 +90,5 @@ export function Logger(
 
   return proxy as Logger;
 }
+
+export const Logger = createLogger as LoggerConstructor;

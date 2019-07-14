@@ -8,10 +8,13 @@
   ],
   "parserOptions": {
     "ecmaVersion": 2018,
-    "sourceType":  "module"
+    "sourceType": "module"
   },
   "env": {
     "node": true,
     "es6": true
+  },
+  "rules": {
+    "@typescript-eslint/no-explicit-any": "off"
   }
 }
