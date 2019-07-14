@@ -16,7 +16,6 @@
   },
   "files": [
     "dist",
-    "types",
     "LICENSE",
     "README.md"
   ],
@@ -74,9 +73,6 @@
     }
   },
   "lint-staged": {
-    "src/**/*.js": [
-      "eslint --fix --format codeframe",
-      "git add"
-    ]
+    "*.{js,ts}": "eslint --fix --format codeframe"
   }
 }
